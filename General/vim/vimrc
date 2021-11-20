@@ -1,0 +1,96 @@
+syntax on
+
+set nu rnu
+set encoding=utf-8
+set backspace=indent,eol,start
+set hidden
+set cursorline
+
+filetype plugin on
+
+" set <space> to <leader>
+nnoremap <space> <Nop>
+let mapleader=" "
+
+" changing tab behaviour
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+
+" statusline configurations
+set laststatus=2
+
+" source of the currentmode: https://jdhao.github.io/2019/11/03/vim_custom_statusline/
+let g:currentmode={
+       \ 'n'  : 'normal ',
+       \ 'v'  : 'VISUAL ',
+       \ 'V'  : 'V·Line ',
+       \ "\<C-V>" : 'V·Block ',
+       \ 'i'  : 'INSERT ',
+       \ 'R'  : 'R ',
+       \ 'Rv' : 'V·Replace ',
+       \ 'c'  : 'Command ',
+       \}
+
+set statusline=
+set statusline+=\ %n
+set statusline+=\ %r
+set statusline+=\ %{toupper(g:currentmode[mode()])}
+set statusline+=\ %m
+set statusline+=\ %w
+set statusline+=\ [%f]
+set statusline+=%=
+set statusline+=\ %p%%
+set statusline+=\ %l:%c\\%L
+set statusline+=\ 
+
+" remap tn to <ESC> in different modes
+nnoremap tn <ESC>
+inoremap tn <ESC> 
+vnoremap tn <ESC>
+cnoremap tn <ESC>
+xnoremap tn <ESC>
+snoremap tn <ESC>
+onoremap tn <ESC>
+
+call plug#begin('~/.vim/plugged')
+	" General
+	Plug 'git@github.com:tpope/vim-surround.git'
+	Plug 'git@github.com:tpope/vim-repeat.git'
+
+	" Coding
+	Plug 'git@github.com:neoclide/coc.nvim.git', {'branch': 'release'}
+	Plug 'git@github.com:tpope/vim-commentary.git'
+	Plug 'git@github.com:tpope/vim-fugitive.git'
+	Plug 'git@github.com:jiangmiao/auto-pairs.git'
+
+	" Python
+	Plug 'git@github.com:vim-scripts/indentpython.vim.git'
+	Plug 'git@github.com:tmhedberg/SimpylFold.git' 
+	Plug 'git@github.com:nvie/vim-flake8'
+call plug#end()
+
+" CoC configurations: source CoC github
+inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+	if (index(['vim','help'], &filetype) >= 0)
+		execute 'h '.expand('<cword>')
+	elseif (coc#rpc#ready())
+		call CocActionAsync('doHover')
+	else
+		execute '!' . &keywordprg . " " . expand('<cword>')
+	endif
+endfunction
+
+nmap <leader>rn <Plug>(coc-rename)
