@@ -1,5 +1,6 @@
 syntax on
 
+set cc=80
 set nu rnu
 set encoding=utf-8
 set backspace=indent,eol,start
@@ -67,8 +68,6 @@ call plug#begin('~/.vim/plugged')
 
 	" Python
 	Plug 'git@github.com:vim-scripts/indentpython.vim.git'
-	Plug 'git@github.com:tmhedberg/SimpylFold.git' 
-	Plug 'git@github.com:nvie/vim-flake8'
 call plug#end()
 
 " CoC configurations: source CoC github
