@@ -47,8 +47,8 @@ bindsym XF86AudioPrev exec playerctl previous
 bindsym XF86MonBrightnessUp exec xbacklight -inc 10
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10
 
-# automatically lock screen
-# exec --no-startup-id xss-lock --transfer-sleep-lock --i3lock --nofork
+# lock screen
+bindsym $mod+Ctrl+q exec --no-startup-id i3lock -c "#151719" -n
 
 # exit i3
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3? You have pressed exit shortcut. This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
