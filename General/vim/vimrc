@@ -46,6 +46,10 @@ set statusline+=\ %p%%
 set statusline+=\ %l:%c\\%L
 set statusline+=\ 
 
+" buffer keybindings
+" source: https://vi.stackexchange.com/questions/22212/map-leaderbnumber-bnumbercr
+nnoremap <silent><expr><leader>b printf(":\<C-U>%s\n", v:count ? 'buffer' . v:count : 'bnext')
+
 " remap tn to <ESC> in different modes
 nnoremap tn <ESC>
 inoremap tn <ESC> 
