@@ -80,3 +80,11 @@ URxvt*saveLines:            	5000
 URxvt.iso14755:                   false
 URxvt.keysym.Shift-Control-V:     eval:paste_clipboard
 URxvt.keysym.Shift-Control-C:     eval:selection_to_clipboard
+
+! Extention for font size
+urxvt.perl-ext-common:          default, resize-font
+URxvt.keysym.Control-minus:     resize-font:smaller
+URxvt.keysym.Control-plus:      resize-font:bigger
+URxvt.keysym.Control-equal:     resize-font:reset
+URxvt.keysym.Control-question:  resize-font:show
+URxvt.resize-font.step:         2
