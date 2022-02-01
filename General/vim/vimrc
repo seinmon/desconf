@@ -6,6 +6,10 @@ set encoding=utf-8
 set backspace=indent,eol,start
 set hidden
 set cursorline
+set list
+set lcs=space:.
+
+hi SpecialKey ctermfg=235 guifg=#262626
 
 filetype plugin on
 
@@ -60,18 +64,18 @@ snoremap tn <ESC>
 onoremap tn <ESC>
 
 call plug#begin('~/.vim/plugged')
-	" General
-	Plug 'git@github.com:tpope/vim-surround.git'
-	Plug 'git@github.com:tpope/vim-repeat.git'
+    " General
+    Plug 'git@github.com:tpope/vim-surround.git'
+    Plug 'git@github.com:tpope/vim-repeat.git'
 
-	" Coding
-	Plug 'git@github.com:neoclide/coc.nvim.git', {'branch': 'release'}
-	Plug 'git@github.com:tpope/vim-commentary.git'
-	Plug 'git@github.com:tpope/vim-fugitive.git'
-	Plug 'git@github.com:jiangmiao/auto-pairs.git'
+    " Coding
+    Plug 'git@github.com:neoclide/coc.nvim.git', {'branch': 'release'}
+    Plug 'git@github.com:tpope/vim-commentary.git'
+    Plug 'git@github.com:tpope/vim-fugitive.git'
+    Plug 'git@github.com:jiangmiao/auto-pairs.git'
 
-	" Python
-	Plug 'git@github.com:vim-scripts/indentpython.vim.git'
+    " Python
+    Plug 'git@github.com:vim-scripts/indentpython.vim.git'
 call plug#end()
 
 " CoC configurations: source CoC github
@@ -87,13 +91,13 @@ nmap <silent> gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
-	if (index(['vim','help'], &filetype) >= 0)
-		execute 'h '.expand('<cword>')
-	elseif (coc#rpc#ready())
-		call CocActionAsync('doHover')
-	else
-		execute '!' . &keywordprg . " " . expand('<cword>')
-	endif
+    if (index(['vim','help'], &filetype) >= 0)
+            execute 'h '.expand('<cword>')
+    elseif (coc#rpc#ready())
+            call CocActionAsync('doHover')
+    else
+        execute '!' . &keywordprg . " " . expand('<cword>')
+    endif
 endfunction
 
 nmap <leader>rn <Plug>(coc-rename)
