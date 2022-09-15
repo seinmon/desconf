@@ -8,7 +8,7 @@ set hidden
 set cursorline
 set list
 set lcs=space:.
-
+set background=dark
 hi SpecialKey ctermfg=235 guifg=#262626
 
 filetype plugin on
@@ -54,7 +54,7 @@ set statusline+=\
 " source: https://vi.stackexchange.com/questions/22212/map-leaderbnumber-bnumbercr
 nnoremap <silent><expr><leader>b printf(":\<C-U>%s\n", v:count ? 'buffer' . v:count : 'bnext')
 
-" " remap tn to <ESC> in different modes
+" remap tn to <ESC> in different modes
 " nnoremap tn <ESC>
 " inoremap tn <ESC> 
 " vnoremap tn <ESC>
@@ -73,15 +73,17 @@ call plug#begin('~/.vim/plugged')
     Plug 'git@github.com:tpope/vim-commentary.git'
     Plug 'git@github.com:tpope/vim-fugitive.git'
     Plug 'git@github.com:jiangmiao/auto-pairs.git'
+    Plug 'git@github.com:skanehira/preview-markdown.vim.git'
 
     " Python
     Plug 'git@github.com:vim-scripts/indentpython.vim.git'
 call plug#end()
 
 " CoC configurations: source CoC github
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <silent><expr> <cr> coc#pum#visible() ? coc#pum#confirm() 
+            \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <Tab> coc#pum#visible() ? coc#pum#next(1) : "\<tab>"
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
 
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -101,3 +103,4 @@ function! s:show_documentation()
 endfunction
 
 nmap <leader>rn <Plug>(coc-rename)
+autocmd CursorHold * silent call CocActionAsync('highlight')
