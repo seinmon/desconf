@@ -1,9 +1,8 @@
-#define 	clr_background		#151719
+#define 	clr_background		#000000
 #define 	clr_foreground		#D8D8D8
 #define 	clr_cursor		    #1ABB9B
-#define 	fn_font			    DejaVu Sans Mono
+#define 	fn_font			    Monaco
 #define 	fn_size			    11
-#define 	fn_letterSpace		-2
 
 Xft.dpi:      				    96
 Xft.antialias: 				    true
