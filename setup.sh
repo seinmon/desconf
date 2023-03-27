@@ -1,4 +1,4 @@
 #!/bin/sh
 
-mv ./General/vim/vimrc ~/.vimrc
-mv ./General/tmux/tmux.conf ~/.tmux.conf
+cp ./General/vim/vimrc ~/.vimrc
+cp ./General/tmux/tmux.conf ~/.tmux.conf
